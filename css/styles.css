@@ -1,0 +1,580 @@
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+:root{
+  --bg:#ffffff;
+  --paper:#f2f5fa;
+  --ink:#0f1b2e;
+  --ink-soft:#4c5c74;
+  --ink-faint:#8a97ac;
+  --line:#dbe3ee;
+
+  /* Paleta azul monocromática: cada linguagem ganha um tom diferente
+     da mesma família, em vez de cores de marca isoladas. Mantém o
+     site inteiro coeso. */
+  --java:#1e3a5f;
+  --java-bg:#e3e9f3;
+  --python:#3562a6;
+  --python-bg:#e7eef8;
+  --spring:#2f7dc9;
+  --spring-bg:#e6f0fb;
+
+  --accent:#1e4d8c;
+  --accent-dark:#0f2a4d;
+
+  --font-display:'Fraunces', serif;
+  --font-body:'IBM Plex Sans', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+
+  --page-max:1200px;
+  --sidebar-width:280px;
+  --gap-page:72px;
+  --radius-sm:5px;
+  --radius-md:12px;
+}
+
+/* ==========================================================================
+   Reset / base
+   ========================================================================== */
+*, *::before, *::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; }
+ul{ margin:0; padding:0; list-style:none; }
+img{ max-width:100%; display:block; }
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+.visually-hidden{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* ==========================================================================
+   Page grid: sidebar fixa + conteúdo largo
+   ========================================================================== */
+.page{
+  max-width:var(--page-max);
+  margin:0 auto;
+  padding:80px 40px 100px;
+  display:grid;
+  grid-template-columns:var(--sidebar-width) 1fr;
+  gap:var(--gap-page);
+  align-items:start;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.sidebar{
+  position:sticky;
+  top:64px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+}
+
+.sidebar__kicker{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  margin:0;
+}
+
+.sidebar__name{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:2rem;
+  line-height:1.08;
+  margin:6px 0 0;
+}
+
+.sidebar__role{
+  color:var(--ink-soft);
+  font-size:15px;
+  margin:0 0 4px;
+}
+
+.sidebar__nav{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  width:100%;
+}
+
+.sidebar__nav a{
+  font-size:14px;
+  color:var(--ink-soft);
+  text-decoration:none;
+}
+
+.sidebar__nav a:hover{ color:var(--ink); }
+
+/* ==========================================================================
+   Photo slots (reutilizado em vários pontos da página)
+   ========================================================================== */
+.photo-slot{
+  border:1.5px dashed var(--line);
+  border-radius:var(--radius-md);
+  background:var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.photo-slot--round{
+  width:148px;
+  height:148px;
+  border-radius:50%;
+}
+
+.photo-slot--tall{
+  width:100%;
+  aspect-ratio:4 / 5;
+}
+
+.photo-slot__label{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-faint);
+  text-align:center;
+  padding:0 12px;
+}
+
+.photo-slot__img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.photo-slot__trigger{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-soft);
+  cursor:pointer;
+  text-decoration:underline;
+  text-decoration-color:var(--line);
+  text-underline-offset:3px;
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.badge{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  padding:5px 11px;
+  border-radius:var(--radius-sm);
+  white-space:nowrap;
+}
+
+.badge--java{ background:var(--java-bg); color:var(--java); }
+.badge--spring{ background:var(--spring-bg); color:var(--spring); }
+.badge--python{ background:var(--python-bg); color:var(--python); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14.5px;
+  font-weight:500;
+  padding:10px 18px;
+  border-radius:6px;
+  text-decoration:none;
+  border:1px solid var(--line);
+  cursor:pointer;
+  background:none;
+  font-family:var(--font-body);
+}
+
+.btn--primary{
+  background:var(--accent-dark);
+  color:#fff;
+  border-color:var(--accent-dark);
+}
+
+.btn__icon{
+  width:15px;
+  height:15px;
+  flex-shrink:0;
+}
+
+/* ==========================================================================
+   Content sections
+   ========================================================================== */
+.content{ min-width:0; }
+
+.section{
+  padding:64px 0;
+  border-top:1px solid var(--line);
+}
+
+.content > .section:first-child{
+  padding-top:0;
+  border-top:none;
+}
+
+.section__eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  margin:0 0 12px;
+}
+
+.section__title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:1.7rem;
+  margin:0 0 20px;
+}
+
+.section__lead{
+  color:var(--ink-soft);
+  margin:-8px 0 28px;
+  max-width:56ch;
+}
+
+/* Duas colunas: texto + foto lado a lado, usando o espaço horizontal */
+.section--split{
+  display:grid;
+  grid-template-columns:1.3fr 0.7fr;
+  gap:48px;
+  align-items:start;
+}
+
+.section--split-reverse{
+  grid-template-columns:1.3fr 0.7fr;
+}
+
+.section__text p{
+  color:var(--ink-soft);
+  max-width:58ch;
+  margin:0 0 16px;
+  font-size:16.5px;
+}
+
+.section__text p:last-child{ margin-bottom:0; }
+
+.section__figure{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-self:start;
+}
+
+.section__caption{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-faint);
+}
+
+/* ==========================================================================
+   Timeline (Formação)
+   ========================================================================== */
+.timeline__item{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:24px;
+  padding:6px 0;
+}
+
+.timeline__date{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--ink-faint);
+  padding-top:3px;
+}
+
+.timeline__org-name{
+  font-weight:600;
+  font-size:16.5px;
+  margin:0 0 4px;
+}
+
+.timeline__org-role{
+  color:var(--ink-soft);
+  font-size:15px;
+  margin:0 0 8px;
+}
+
+.timeline__tags{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  margin:0;
+}
+
+/* ==========================================================================
+   Projetos — carrossel de cards
+   ========================================================================== */
+.section__head-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:16px;
+  margin-bottom:28px;
+}
+
+.section__head-row .section__title{ margin-bottom:0; }
+
+.carousel__controls{
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.carousel__btn{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding:0;
+}
+
+.carousel__btn:hover{
+  background:var(--paper);
+  color:var(--ink);
+}
+
+.carousel__btn svg{
+  width:16px;
+  height:16px;
+}
+
+.carousel{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:2px 2px 12px;
+  margin:-2px -2px 0;
+  scrollbar-width:none;
+}
+
+.carousel::-webkit-scrollbar{ display:none; }
+
+.project-card{
+  flex:0 0 300px;
+  scroll-snap-align:start;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  padding:24px;
+  background:#fff;
+}
+
+.project-card__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.project-card__lang{
+  font-family:var(--font-mono);
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:var(--radius-sm);
+}
+
+.project-card__lang--java{ background:var(--java-bg); color:var(--java); }
+.project-card__lang--python{ background:var(--python-bg); color:var(--python); }
+.project-card__lang--api{ background:var(--spring-bg); color:var(--spring); }
+
+.project-card__link{
+  display:flex;
+  color:var(--ink-faint);
+}
+
+.project-card__link:hover{ color:var(--accent); }
+
+.project-card__link svg{
+  width:18px;
+  height:18px;
+}
+
+.project-card__title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:1.15rem;
+  margin:0;
+}
+
+.project-card__description{
+  color:var(--ink-soft);
+  font-size:15px;
+  margin:0;
+  flex:1;
+}
+
+.project-card__meta{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-faint);
+  margin:0;
+}
+
+.stack{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0;
+}
+
+.stack li{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-soft);
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:4px 9px;
+  border-radius:4px;
+}
+
+/* ==========================================================================
+   Gallery — grade assimétrica pra não parecer feed
+   ========================================================================== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-auto-rows:160px;
+  gap:14px;
+}
+
+.gallery__item{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.gallery__item .photo-slot{
+  flex:1;
+  aspect-ratio:auto;
+}
+
+.gallery__item--wide{
+  grid-column:span 2;
+}
+
+/* ==========================================================================
+   Certifications
+   ========================================================================== */
+.cert{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  padding:16px 0;
+}
+
+.cert + .cert{ border-top:1px solid var(--line); }
+
+.cert__title{
+  font-size:16px;
+  font-weight:600;
+  margin:0 0 4px;
+}
+
+.cert__issuer{
+  color:var(--ink-soft);
+  font-size:14.5px;
+  margin:0;
+}
+
+.cert__date{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  white-space:nowrap;
+  padding-top:2px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer{
+  padding:64px 0 0;
+  border-top:1px solid var(--line);
+}
+
+.footer .section__title{ margin-bottom:14px; }
+
+.footer__text{
+  color:var(--ink-soft);
+  max-width:44ch;
+  margin:0 0 24px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 980px){
+  .page{
+    grid-template-columns:1fr;
+    padding:48px 24px 72px;
+    gap:48px;
+  }
+  .sidebar{
+    position:static;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .sidebar__nav{ display:none; }
+  .section--split, .section--split-reverse{
+    grid-template-columns:1fr;
+  }
+  .section__figure{ order:-1; max-width:340px; }
+}
+
+@media (max-width: 560px){
+  .project-card{ flex-basis:260px; }
+  .gallery{
+    grid-template-columns:repeat(2, 1fr);
+    grid-auto-rows:130px;
+  }
+  .gallery__item--wide{ grid-column:span 2; }
+  .photo-slot--round{ width:100px; height:100px; }
+}

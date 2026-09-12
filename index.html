@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Nascimento</title>
+  <meta name="description" content="Gabriel Nascimento — Estudante de Ciência da Computação, Java + Spring Boot, Python.">
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 style-src 'self' https://fonts.googleapis.com;
+                 font-src https://fonts.gstatic.com;
+                 img-src 'self' data: blob:;
+                 script-src 'self';
+                 object-src 'none';
+                 base-uri 'self';
+                 frame-ancestors 'none';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  
+  <aside class="sidebar">
+    <p class="sidebar__kicker">Recife, Pernambuco, Brasil</p>
+
+    
+    <div class="photo-slot photo-slot--round" id="photo-main" data-empty="true">
+      <img src="assets/me.jpeg" alt="Foto de Gabriel Nascimento" class="photo-slot__img">
+    </div>
+  
+
+    <h1 class="sidebar__name">Gabriel Nascimento</h1>
+    <p class="sidebar__role">Estudante de Ciência da Computação</p>
+
+    <div class="badges">
+      <span class="badge badge--java">Java</span>
+      <span class="badge badge--spring">Spring Boot</span>
+      <span class="badge badge--python">Python</span>
+    </div>
+
+    <a class="btn btn--primary" href="https://www.linkedin.com/in/gabrielpnasc/" target="_blank" rel="noopener noreferrer">
+      <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+      Ver no LinkedIn
+    </a>
+
+    <nav class="sidebar__nav" aria-label="Seções da página">
+      <a href="#sobre">Sobre</a>
+      <a href="#formacao">Formação</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#certificados">Certificados</a>
+    </nav>
+  </aside>
+
+  <!-- ============ CONTEÚDO PRINCIPAL ============ -->
+  <main class="content">
+
+    <section class="section section--split" id="sobre" aria-labelledby="about-heading">
+      <div class="section__text">
+        <p class="section__eyebrow">01</p>
+        <h2 class="section__title" id="about-heading">Sobre</h2>
+        <p>Sou estudante de Ciência da Computação, focado em construir aplicações completas com integração a banco de dados MySQL, aplicando arquitetura em camadas e boas práticas de código.</p>
+        <p>Minhas principais conquistas até aqui são ter construído aplicações funcionais do zero e evoluir de forma constante em lógica, orientação a objetos e versionamento com Git.</p>
+        <p>Sou movido por desafios, aprendizado contínuo e pela busca de soluções limpas, organizadas e escaláveis.</p>
+      </div>
+      
+      <figure class="section__figure">
+        <div class="photo-slot photo-slot--tall" id="photo-about" data-empty="true">
+          <img src="assets/WhatsApp Image 2026-09-11 at 17.52.45.jpeg" alt="Foto de Gabriel Nascimento" class="photo-slot__img">
+        </div>
+        
+    </section>
+
+    <section class="section" id="formacao" aria-labelledby="education-heading">
+      <p class="section__eyebrow">02</p>
+      <h2 class="section__title" id="education-heading">Formação</h2>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__date">2026 — 2030</div>
+          <div class="timeline__body">
+            <h3 class="timeline__org-name">CESAR School</h3>
+            <p class="timeline__org-role">Ciência da Computação</p>
+            <p class="timeline__tags">Gestão de pessoas · Python</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projetos" aria-labelledby="projects-heading">
+      <div class="section__head-row">
+        <div>
+          <p class="section__eyebrow">03</p>
+          <h2 class="section__title" id="projects-heading">Projetos</h2>
+        </div>
+        <div class="carousel__controls">
+          <button type="button" class="carousel__btn" data-carousel-prev aria-label="Projeto anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="carousel__btn" data-carousel-next aria-label="Próximo projeto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel" id="projects-carousel" role="list">
+
+        <article class="project-card" role="listitem">
+          <div class="project-card__head">
+            <span class="project-card__lang project-card__lang--java">Java</span>
+            <a class="project-card__link" href="https://github.com/GabrielPNasc/Gerador-de-QRCode" target="_blank" rel="noopener noreferrer" aria-label="Ver repositório Gerador de QR Code no GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
+          </div>
+          <h3 class="project-card__title">Gerador de QR Code</h3>
+          <p class="project-card__description">API REST que recebe um link, processa e devolve o QR Code em PNG na hora. O aprendizado central foi integrar Spring Boot com JavaScript puro e entender a fundo o envio e a renderização de arquivos de imagem via HTTP.</p>
+          <ul class="stack" aria-label="Tecnologias usadas">
+            <li>Spring Boot</li>
+            <li>ZXing</li>
+            <li>JavaScript</li>
+          </ul>
+        </article>
+
+        <article class="project-card" role="listitem">
+          <div class="project-card__head">
+            <span class="project-card__lang project-card__lang--python">Python</span>
+            <a class="project-card__link" href="https://github.com/GabrielPNasc/Sistema-de-Detectacao-de-movimento" target="_blank" rel="noopener noreferrer" aria-label="Ver repositório Sistema de Detecção de Movimento no GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.98 5.24.98 11.5c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55v-1.94c-3.17.69-3.84-1.53-3.84-1.53-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.54-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.11 3.04.73.8 1.17 1.82 1.17 3.06 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14v3.17c0 .3.21.66.79.55A11.01 11.01 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+            </a>
+          </div>
+          <h3 class="project-card__title">Sistema de Detecção de Movimento</h3>
+          <p class="project-card__description">Monitora a janela escolhida pela quantidade de pixels alterados entre os frames. Ao detectar movimento, emite um alerta sonoro e envia automaticamente pelo WhatsApp uma imagem informando o horário em que ele ocorreu.</p>
+          <ul class="stack" aria-label="Tecnologias usadas">
+            <li>Python</li>
+          </ul>
+          <p class="project-card__meta">1 estrela no GitHub</p>
+        </article>
+
+        <article class="project-card" role="listitem">
+          <div class="project-card__head">
+            <span class="project-card__lang project-card__lang--api">API</span>
+            <a class="project-card__link" href="https://github.com/GabrielPNasc/API_system_login" target="_blank" rel="noopener noreferrer" aria-label="Ver repositório API System Login no GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.98 5.24.98 11.5c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55v-1.94c-3.17.69-3.84-1.53-3.84-1.53-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.54-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.11 3.04.73.8 1.17 1.82 1.17 3.06 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14v3.17c0 .3.21.66.79.55A11.01 11.01 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+            </a>
+          </div>
+          <h3 class="project-card__title">API de Sistema de Login</h3>
+          <p class="project-card__description">Sistema de autenticação para cadastro e login de usuários por meio de uma API: recebe e valida as credenciais e realiza a comunicação com o banco de dados.</p>
+          <ul class="stack" aria-label="Tecnologias usadas">
+            <li>API REST</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    
+
+    <section class="section" id="certificados" aria-labelledby="certs-heading">
+      <p class="section__eyebrow">05</p>
+      <h2 class="section__title" id="certs-heading">Certificados</h2>
+      <ul class="certs">
+        <li class="cert">
+          <div class="cert__info">
+            <h3 class="cert__title">Python</h3>
+            <p class="cert__issuer">Santander Open Academy</p>
+          </div>
+          <div class="cert__date">set 2026</div>
+        </li>
+        <li class="cert">
+          <div class="cert__info">
+            <h3 class="cert__title">Gestão ágil de projetos com Scrum e Kanban</h3>
+            <p class="cert__issuer">Senac Brasil</p>
+          </div>
+          <div class="cert__date">ago 2026</div>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <h2 class="section__title">Vamos conversar</h2>
+      <p class="footer__text">Estou buscando as próximas oportunidades pra aplicar o que venho construindo. Me chama no LinkedIn.</p>
+      <a class="btn btn--primary" href="https://www.linkedin.com/in/gabrielpnasc/" target="_blank" rel="noopener noreferrer">
+        <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+        linkedin.com/in/gabrielpnasc
+      </a>
+    </footer>
+
+  </main>
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
