@@ -131,3 +131,40 @@
     createCarouselController({ track, prevButton, nextButton });
   }
 })();
+
+/**
+ * Barra superior de redes sociais.
+ *
+ * Quando o rodapé (que repete os mesmos links) chega perto do meio da tela,
+ * a barra some com animação; ao subir de volta, ela reaparece.
+ * Usa scroll com requestAnimationFrame (leve) e também roda no load/resize.
+ */
+(function TopbarAutoHide() {
+  'use strict';
+
+  const topbar = document.querySelector('.topbar');
+  const footer = document.querySelector('.footer');
+  if (!topbar || !footer) return;
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const footerTop = footer.getBoundingClientRect().top;
+    // some quando o topo do rodapé sobe até 75% da altura da tela
+    const shouldHide = footerTop < window.innerHeight * 0.75;
+    topbar.classList.toggle('topbar--hidden', shouldHide);
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', update);
+  update();
+})();

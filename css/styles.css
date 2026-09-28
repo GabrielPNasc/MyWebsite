@@ -74,7 +74,7 @@ img{ max-width:100%; display:block; }
 .page{
   max-width:var(--page-max);
   margin:0 auto;
-  padding:80px 40px 100px;
+  padding:56px 40px 100px;
   display:grid;
   grid-template-columns:var(--sidebar-width) 1fr;
   gap:var(--gap-page);
@@ -86,7 +86,7 @@ img{ max-width:100%; display:block; }
    ========================================================================== */
 .sidebar{
   position:sticky;
-  top:64px;
+  top:96px;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
@@ -230,6 +230,120 @@ img{ max-width:100%; display:block; }
   width:15px;
   height:15px;
   flex-shrink:0;
+}
+
+/* ==========================================================================
+   Barra superior com redes sociais (sempre visível)
+   ========================================================================== */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  transition:transform .4s ease, opacity .4s ease;
+}
+
+/* some quando o rodapé (com as mesmas redes) entra na tela */
+.topbar--hidden{
+  transform:translateY(-100%);
+  opacity:0;
+  pointer-events:none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .topbar{ transition:none; }
+}
+
+.topbar__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+  padding:12px 40px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+
+.topbar__brand{
+  font-family:var(--font-display);
+  font-weight:500; font-size:1.1rem;
+  text-decoration:none;
+}
+
+.topbar__social{ display:flex; gap:8px; }
+
+.topbar__link{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 14px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:14px; font-weight:500;
+  text-decoration:none;
+  color:var(--ink);
+  background:#fff;
+  transition:background .15s, color .15s, border-color .15s, transform .15s;
+}
+
+.topbar__link:hover{
+  background:var(--accent-dark);
+  border-color:var(--accent-dark);
+  color:#fff;
+  transform:translateY(-1px);
+}
+
+.topbar__icon{ width:16px; height:16px; flex-shrink:0; }
+
+html{ scroll-padding-top:72px; }
+
+/* ==========================================================================
+   Redes sociais
+   ========================================================================== */
+.social{ display:flex; gap:10px; margin-top:4px; }
+
+.social__link{
+  width:42px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  background:#fff;
+  transition:background .15s, color .15s, border-color .15s, transform .15s;
+}
+
+.social__link:hover{
+  background:var(--accent-dark);
+  border-color:var(--accent-dark);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+.social__icon{ width:19px; height:19px; }
+
+.social-cards{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px;
+  max-width:560px;
+}
+
+.social-card{
+  display:flex; align-items:center; gap:14px;
+  padding:14px 18px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  text-decoration:none;
+  background:#fff;
+  transition:border-color .15s, background .15s;
+}
+
+.social-card:hover{ border-color:var(--accent); background:var(--paper); }
+
+.social-card__icon{ width:22px; height:22px; flex-shrink:0; color:var(--accent); }
+
+.social-card__text{ display:flex; flex-direction:column; min-width:0; }
+.social-card__text strong{ font-size:15px; font-weight:600; }
+.social-card__text span{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  color:var(--ink-faint);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
 /* ==========================================================================
@@ -541,6 +655,11 @@ img{ max-width:100%; display:block; }
 
 .footer .section__title{ margin-bottom:14px; }
 
+.footer .social-card{
+  transition:border-color .15s, background .15s, transform .15s;
+}
+.footer .social-card:hover{ transform:translateY(-2px); }
+
 .footer__text{
   color:var(--ink-soft);
   max-width:44ch;
@@ -551,6 +670,7 @@ img{ max-width:100%; display:block; }
    Responsive
    ========================================================================== */
 @media (max-width: 980px){
+  .topbar__inner{ padding:10px 20px; }
   .page{
     grid-template-columns:1fr;
     padding:48px 24px 72px;
@@ -570,6 +690,11 @@ img{ max-width:100%; display:block; }
 }
 
 @media (max-width: 560px){
+  .topbar__brand{ display:none; }
+  .topbar__inner{ justify-content:center; }
+  .topbar__link{ padding:10px; }
+  .topbar__link span{ display:none; }
+  .social-cards{ grid-template-columns:1fr; }
   .project-card{ flex-basis:260px; }
   .gallery{
     grid-template-columns:repeat(2, 1fr);
