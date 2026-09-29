@@ -1,7 +1,6 @@
-/* ==========================================================================
-   Design tokens
-   ========================================================================== */
+/* Design tokens — única fonte de verdade para cor, tipografia e espaçamento */
 :root{
+  color-scheme: light;
   --bg:#ffffff;
   --paper:#f2f5fa;
   --ink:#0f1b2e;
@@ -9,9 +8,8 @@
   --ink-faint:#8a97ac;
   --line:#dbe3ee;
 
-  /* Paleta azul monocromática: cada linguagem ganha um tom diferente
-     da mesma família, em vez de cores de marca isoladas. Mantém o
-     site inteiro coeso. */
+  
+  /* Uma família azul monocromática identifica cada linguagem, em vez de cores de marca isoladas */
   --java:#1e3a5f;
   --java-bg:#e3e9f3;
   --python:#3562a6;
@@ -31,11 +29,11 @@
   --gap-page:72px;
   --radius-sm:5px;
   --radius-md:12px;
+
 }
 
-/* ==========================================================================
-   Reset / base
-   ========================================================================== */
+
+/* Reset */
 *, *::before, *::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
 
@@ -58,6 +56,7 @@ img{ max-width:100%; display:block; }
   outline-offset:2px;
 }
 
+/* Some visualmente sem remover do fluxo de leitores de tela */
 .visually-hidden{
   position:absolute;
   width:1px; height:1px;
@@ -68,9 +67,7 @@ img{ max-width:100%; display:block; }
   border:0;
 }
 
-/* ==========================================================================
-   Page grid: sidebar fixa + conteúdo largo
-   ========================================================================== */
+/* Grid principal: sidebar fixa + conteúdo */
 .page{
   max-width:var(--page-max);
   margin:0 auto;
@@ -81,9 +78,7 @@ img{ max-width:100%; display:block; }
   align-items:start;
 }
 
-/* ==========================================================================
-   Sidebar
-   ========================================================================== */
+/* Sidebar */
 .sidebar{
   position:sticky;
   top:96px;
@@ -132,9 +127,7 @@ img{ max-width:100%; display:block; }
 
 .sidebar__nav a:hover{ color:var(--ink); }
 
-/* ==========================================================================
-   Photo slots (reutilizado em vários pontos da página)
-   ========================================================================== */
+/* Slots de foto — mesmo componente reaproveitado em várias seções */
 .photo-slot{
   border:1.5px dashed var(--line);
   border-radius:var(--radius-md);
@@ -181,9 +174,7 @@ img{ max-width:100%; display:block; }
   text-underline-offset:3px;
 }
 
-/* ==========================================================================
-   Badges
-   ========================================================================== */
+/* Badges de stack */
 .badges{
   display:flex;
   flex-wrap:wrap;
@@ -202,9 +193,7 @@ img{ max-width:100%; display:block; }
 .badge--spring{ background:var(--spring-bg); color:var(--spring); }
 .badge--python{ background:var(--python-bg); color:var(--python); }
 
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
+/* Botões */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -232,18 +221,15 @@ img{ max-width:100%; display:block; }
   flex-shrink:0;
 }
 
-/* ==========================================================================
-   Barra superior com redes sociais (sempre visível)
-   ========================================================================== */
+/* Barra superior fixa com atalhos de redes sociais */
 .topbar{
   position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.92);
+  background:color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);
   transition:transform .4s ease, opacity .4s ease;
 }
 
-/* some quando o rodapé (com as mesmas redes) entra na tela */
 .topbar--hidden{
   transform:translateY(-100%);
   opacity:0;
@@ -292,9 +278,7 @@ img{ max-width:100%; display:block; }
 
 html{ scroll-padding-top:72px; }
 
-/* ==========================================================================
-   Redes sociais
-   ========================================================================== */
+/* Ícones de redes na sidebar (não usado atualmente — links migraram para a topbar) */
 .social{ display:flex; gap:10px; margin-top:4px; }
 
 .social__link{
@@ -316,6 +300,7 @@ html{ scroll-padding-top:72px; }
 
 .social__icon{ width:19px; height:19px; }
 
+/* Cards de redes sociais no rodapé */
 .social-cards{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -346,9 +331,7 @@ html{ scroll-padding-top:72px; }
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
-/* ==========================================================================
-   Content sections
-   ========================================================================== */
+/* Conteúdo principal */
 .content{ min-width:0; }
 
 .section{
@@ -381,7 +364,6 @@ html{ scroll-padding-top:72px; }
   max-width:56ch;
 }
 
-/* Duas colunas: texto + foto lado a lado, usando o espaço horizontal */
 .section--split{
   display:grid;
   grid-template-columns:1.3fr 0.7fr;
@@ -416,9 +398,7 @@ html{ scroll-padding-top:72px; }
   color:var(--ink-faint);
 }
 
-/* ==========================================================================
-   Timeline (Formação)
-   ========================================================================== */
+/* Timeline — Formação */
 .timeline__item{
   display:grid;
   grid-template-columns:140px 1fr;
@@ -452,9 +432,7 @@ html{ scroll-padding-top:72px; }
   margin:0;
 }
 
-/* ==========================================================================
-   Projetos — carrossel de cards
-   ========================================================================== */
+/* Cabeçalho de seção com ação (usado em Projetos) */
 .section__head-row{
   display:flex;
   justify-content:space-between;
@@ -465,6 +443,7 @@ html{ scroll-padding-top:72px; }
 
 .section__head-row .section__title{ margin-bottom:0; }
 
+/* Carrossel — Projetos */
 .carousel__controls{
   display:flex;
   gap:8px;
@@ -586,9 +565,7 @@ html{ scroll-padding-top:72px; }
   border-radius:4px;
 }
 
-/* ==========================================================================
-   Gallery — grade assimétrica pra não parecer feed
-   ========================================================================== */
+/* Galeria — grade assimétrica para não parecer feed */
 .gallery{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
@@ -612,9 +589,7 @@ html{ scroll-padding-top:72px; }
   grid-column:span 2;
 }
 
-/* ==========================================================================
-   Certifications
-   ========================================================================== */
+/* Certificados */
 .cert{
   display:flex;
   justify-content:space-between;
@@ -645,9 +620,7 @@ html{ scroll-padding-top:72px; }
   padding-top:2px;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+/* Rodapé */
 .footer{
   padding:64px 0 0;
   border-top:1px solid var(--line);
@@ -666,9 +639,7 @@ html{ scroll-padding-top:72px; }
   margin:0 0 24px;
 }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+/* Responsivo */
 @media (max-width: 980px){
   .topbar__inner{ padding:10px 20px; }
   .page{
@@ -702,4 +673,38 @@ html{ scroll-padding-top:72px; }
   }
   .gallery__item--wide{ grid-column:span 2; }
   .photo-slot--round{ width:100px; height:100px; }
+}
+
+/* Tema escuro automático — segue a preferência do sistema operacional do visitante */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1220;
+    --paper:#121b2e;
+    --ink:#eef2f8;
+    --ink-soft:#a9b6cc;
+    --ink-faint:#6b7a94;
+    --line:#22304a;
+
+    --java:#8fb2e3;
+    --java-bg:#1b2b47;
+    --python:#9dc0f2;
+    --python-bg:#182640;
+    --spring:#7ab2ee;
+    --spring-bg:#16233c;
+
+    --accent:#6ea6f0;
+    --accent-dark:#3f7dd9;
+  }
+
+  /* Elementos com fundo branco fixo precisam de uma regra própria no escuro */
+  .carousel__btn,
+  .project-card,
+  .social-card,
+  .topbar__link{
+    background:var(--bg);
+  }
+
+  .topbar{
+    background:rgba(11,18,32,.92);
+  }
 }
