@@ -1,29 +1,10 @@
-/**
- * main.js
- *
- * Cada espaço de foto da página (sidebar, sobre, projeto, galeria) usa o
- * mesmo componente de preview local, criado por uma factory function.
- * Isso evita duplicar a mesma lógica pra cada slot e mantém regra de
- * validação/segurança num único lugar.
- *
- * Padrões usados:
- *  - Factory function: createPhotoSlotPreview() gera um componente
- *    independente por par (slot, input).
- *  - Module pattern (IIFE): nada além do necessário toca o escopo global.
- *
- * Segurança:
- *  - Nenhum uso de innerHTML/eval com dado do usuário; a <img> é criada
- *    via DOM API e só o objeto File validado é usado.
- *  - Tipo (PNG/JPEG/WEBP) e tamanho (até 5MB) são validados antes do preview.
- *  - object URLs são revogadas ao trocar de imagem ou sair da página,
- *    evitando vazamento de memória.
- *  - Compatível com a CSP script-src 'self' do index.html (sem inline).
- */
+// Preview local de imagens: cada slot de foto reaproveita o mesmo
+// componente, evitando duplicar validação e limpeza de object URLs.
 (function PhotoSlots() {
   'use strict';
 
   const ALLOWED_TYPES = Object.freeze(['image/png', 'image/jpeg', 'image/webp']);
-  const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+  const MAX_SIZE_BYTES = 5 * 1024 * 1024;
 
   const SLOT_PAIRS = Object.freeze([
     { slotId: 'photo-main', inputId: 'photo-input-main', alt: 'Foto de Gabriel Nascimento' },
@@ -38,10 +19,7 @@
     return ALLOWED_TYPES.includes(file.type) && file.size <= MAX_SIZE_BYTES;
   }
 
-  /**
-   * Factory: recebe os elementos de um slot e devolve um componente com
-   * seu próprio estado (a object URL atual), sem vazar nada pro global.
-   */
+  // Cada chamada isola sua própria object URL, sem vazar estado global.
   function createPhotoSlotPreview({ slot, input, alt }) {
     let currentObjectUrl = null;
 
@@ -91,18 +69,8 @@
   });
 })();
 
-/**
- * Carrossel de projetos.
- *
- * Padrão: factory function novamente (createCarouselController), pra manter
- * a mesma abordagem usada nos slots de foto — um componente independente,
- * sem estado global, que podia ser reaproveitado se a página ganhar mais
- * de um carrossel no futuro.
- *
- * Comportamento: os botões avançam/voltam exatamente a largura de um card
- * (medida em tempo real, então continua correto se o CSS mudar o tamanho
- * do card em telas menores) usando scroll nativo suave — sem libs externas.
- */
+// Carrossel de projetos: avança/volta a largura exata de um card,
+// medida em tempo real para acompanhar mudanças de layout.
 (function ProjectCarousel() {
   'use strict';
 
@@ -132,13 +100,8 @@
   }
 })();
 
-/**
- * Barra superior de redes sociais.
- *
- * Quando o rodapé (que repete os mesmos links) chega perto do meio da tela,
- * a barra some com animação; ao subir de volta, ela reaparece.
- * Usa scroll com requestAnimationFrame (leve) e também roda no load/resize.
- */
+// Esconde a barra superior perto do rodapé, que repete os mesmos links,
+// para não duplicar a mesma informação visível ao mesmo tempo.
 (function TopbarAutoHide() {
   'use strict';
 
@@ -151,7 +114,6 @@
   function update() {
     ticking = false;
     const footerTop = footer.getBoundingClientRect().top;
-    // some quando o topo do rodapé sobe até 75% da altura da tela
     const shouldHide = footerTop < window.innerHeight * 0.75;
     topbar.classList.toggle('topbar--hidden', shouldHide);
   }
@@ -167,4 +129,45 @@
   window.addEventListener('resize', onScroll);
   window.addEventListener('load', update);
   update();
+})();
+
+// Alterna entre tema claro e escuro. Por padrão segue o sistema; a
+// escolha manual do usuário é salva em localStorage e passa a valer
+// sobre a preferência do sistema. O <head> já aplica o valor salvo
+// antes do primeiro paint, evitando flash de tema errado.
+(function ThemeToggle() {
+  'use strict';
+
+  const STORAGE_KEY = 'theme';
+  const button = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  if (!button) return;
+
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function systemTheme() {
+    return media.matches ? 'dark' : 'light';
+  }
+
+  function currentTheme() {
+    return root.dataset.theme || systemTheme();
+  }
+
+  function applyTheme(theme) {
+    root.dataset.theme = theme;
+    button.setAttribute('aria-pressed', String(theme === 'dark'));
+  }
+
+  function toggleTheme() {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem(STORAGE_KEY, next);
+  }
+
+  media.addEventListener('change', () => {
+    if (!localStorage.getItem(STORAGE_KEY)) applyTheme(systemTheme());
+  });
+
+  button.addEventListener('click', toggleTheme);
+  applyTheme(currentTheme());
 })();

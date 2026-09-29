@@ -1,4 +1,3 @@
-/* Design tokens — única fonte de verdade para cor, tipografia e espaçamento */
 :root{
   color-scheme: light;
   --bg:#ffffff;
@@ -8,8 +7,6 @@
   --ink-faint:#8a97ac;
   --line:#dbe3ee;
 
-  
-  /* Uma família azul monocromática identifica cada linguagem, em vez de cores de marca isoladas */
   --java:#1e3a5f;
   --java-bg:#e3e9f3;
   --python:#3562a6;
@@ -29,13 +26,10 @@
   --gap-page:72px;
   --radius-sm:5px;
   --radius-md:12px;
-
 }
 
-
-/* Reset */
 *, *::before, *::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+html{ scroll-behavior:smooth; scroll-padding-top:72px; }
 
 body{
   margin:0;
@@ -56,7 +50,6 @@ img{ max-width:100%; display:block; }
   outline-offset:2px;
 }
 
-/* Some visualmente sem remover do fluxo de leitores de tela */
 .visually-hidden{
   position:absolute;
   width:1px; height:1px;
@@ -67,7 +60,6 @@ img{ max-width:100%; display:block; }
   border:0;
 }
 
-/* Grid principal: sidebar fixa + conteúdo */
 .page{
   max-width:var(--page-max);
   margin:0 auto;
@@ -78,7 +70,6 @@ img{ max-width:100%; display:block; }
   align-items:start;
 }
 
-/* Sidebar */
 .sidebar{
   position:sticky;
   top:96px;
@@ -127,7 +118,6 @@ img{ max-width:100%; display:block; }
 
 .sidebar__nav a:hover{ color:var(--ink); }
 
-/* Slots de foto — mesmo componente reaproveitado em várias seções */
 .photo-slot{
   border:1.5px dashed var(--line);
   border-radius:var(--radius-md);
@@ -174,7 +164,6 @@ img{ max-width:100%; display:block; }
   text-underline-offset:3px;
 }
 
-/* Badges de stack */
 .badges{
   display:flex;
   flex-wrap:wrap;
@@ -193,7 +182,6 @@ img{ max-width:100%; display:block; }
 .badge--spring{ background:var(--spring-bg); color:var(--spring); }
 .badge--python{ background:var(--python-bg); color:var(--python); }
 
-/* Botões */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -221,7 +209,6 @@ img{ max-width:100%; display:block; }
   flex-shrink:0;
 }
 
-/* Barra superior fixa com atalhos de redes sociais */
 .topbar{
   position:sticky; top:0; z-index:50;
   background:color-mix(in srgb, var(--bg) 92%, transparent);
@@ -253,7 +240,7 @@ img{ max-width:100%; display:block; }
   text-decoration:none;
 }
 
-.topbar__social{ display:flex; gap:8px; }
+.topbar__social{ display:flex; align-items:center; gap:8px; }
 
 .topbar__link{
   display:inline-flex; align-items:center; gap:8px;
@@ -276,9 +263,38 @@ img{ max-width:100%; display:block; }
 
 .topbar__icon{ width:16px; height:16px; flex-shrink:0; }
 
-html{ scroll-padding-top:72px; }
+/* Peso visual intermediário: mesmo contorno discreto dos links, sem preenchimento — não deve competir com os links de rede social */
+.theme-toggle{
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:transparent;
+  color:var(--ink-soft);
+  cursor:pointer;
+  padding:0;
+  transition:background .15s, color .15s, border-color .15s, transform .15s;
+}
 
-/* Ícones de redes na sidebar (não usado atualmente — links migraram para a topbar) */
+.theme-toggle:hover{
+  background:var(--paper);
+  border-color:var(--ink-faint);
+  color:var(--ink);
+  transform:translateY(-1px);
+}
+
+.theme-toggle__icon{ width:17px; height:17px; }
+.theme-toggle__icon--moon{ display:none; }
+
+:root[data-theme="dark"] .theme-toggle__icon--sun{ display:none; }
+:root[data-theme="dark"] .theme-toggle__icon--moon{ display:block; }
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle__icon--sun{ display:none; }
+  :root:not([data-theme="light"]) .theme-toggle__icon--moon{ display:block; }
+}
+
+/* Não usado no momento — links de rede migraram para a topbar */
 .social{ display:flex; gap:10px; margin-top:4px; }
 
 .social__link{
@@ -300,7 +316,6 @@ html{ scroll-padding-top:72px; }
 
 .social__icon{ width:19px; height:19px; }
 
-/* Cards de redes sociais no rodapé */
 .social-cards{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -315,10 +330,10 @@ html{ scroll-padding-top:72px; }
   border-radius:var(--radius-md);
   text-decoration:none;
   background:#fff;
-  transition:border-color .15s, background .15s;
+  transition:border-color .15s, background .15s, transform .15s;
 }
 
-.social-card:hover{ border-color:var(--accent); background:var(--paper); }
+.social-card:hover{ border-color:var(--accent); background:var(--paper); transform:translateY(-2px); }
 
 .social-card__icon{ width:22px; height:22px; flex-shrink:0; color:var(--accent); }
 
@@ -331,7 +346,6 @@ html{ scroll-padding-top:72px; }
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
-/* Conteúdo principal */
 .content{ min-width:0; }
 
 .section{
@@ -398,7 +412,6 @@ html{ scroll-padding-top:72px; }
   color:var(--ink-faint);
 }
 
-/* Timeline — Formação */
 .timeline__item{
   display:grid;
   grid-template-columns:140px 1fr;
@@ -432,7 +445,6 @@ html{ scroll-padding-top:72px; }
   margin:0;
 }
 
-/* Cabeçalho de seção com ação (usado em Projetos) */
 .section__head-row{
   display:flex;
   justify-content:space-between;
@@ -443,7 +455,6 @@ html{ scroll-padding-top:72px; }
 
 .section__head-row .section__title{ margin-bottom:0; }
 
-/* Carrossel — Projetos */
 .carousel__controls{
   display:flex;
   gap:8px;
@@ -565,7 +576,6 @@ html{ scroll-padding-top:72px; }
   border-radius:4px;
 }
 
-/* Galeria — grade assimétrica para não parecer feed */
 .gallery{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
@@ -589,7 +599,6 @@ html{ scroll-padding-top:72px; }
   grid-column:span 2;
 }
 
-/* Certificados */
 .cert{
   display:flex;
   justify-content:space-between;
@@ -620,7 +629,6 @@ html{ scroll-padding-top:72px; }
   padding-top:2px;
 }
 
-/* Rodapé */
 .footer{
   padding:64px 0 0;
   border-top:1px solid var(--line);
@@ -628,10 +636,14 @@ html{ scroll-padding-top:72px; }
 
 .footer .section__title{ margin-bottom:14px; }
 
-.footer .social-card{
-  transition:border-color .15s, background .15s, transform .15s;
+/* Fica junto do rodapé, depois do storytelling e dos contatos — linha
+   reservada para o botão de tema e, futuramente, outros de mesma função
+   (ex.: link do projeto na Vercel). */
+.footer__controls{
+  display:flex;
+  gap:10px;
+  margin-top:24px;
 }
-.footer .social-card:hover{ transform:translateY(-2px); }
 
 .footer__text{
   color:var(--ink-soft);
@@ -639,7 +651,6 @@ html{ scroll-padding-top:72px; }
   margin:0 0 24px;
 }
 
-/* Responsivo */
 @media (max-width: 980px){
   .topbar__inner{ padding:10px 20px; }
   .page{
@@ -654,10 +665,19 @@ html{ scroll-padding-top:72px; }
     align-items:center;
   }
   .sidebar__nav{ display:none; }
+}
+
+/* Abaixo de 980px a sidebar já virou uma faixa horizontal no topo, então
+   sobra largura para o texto e a foto da seção Sobre continuarem lado a
+   lado — por isso esse layout só quebra num ponto mais estreito. */
+@media (max-width: 720px){
   .section--split, .section--split-reverse{
     grid-template-columns:1fr;
   }
-  .section__figure{ order:-1; max-width:340px; }
+  /* A foto da sidebar já identifica quem é Gabriel; repetir uma segunda
+     foto grande empilhada antes do texto, em telas pequenas, só empurra
+     o conteúdo pra baixo sem agregar informação nova. */
+  .section__figure{ display:none; }
 }
 
 @media (max-width: 560px){
@@ -675,9 +695,10 @@ html{ scroll-padding-top:72px; }
   .photo-slot--round{ width:100px; height:100px; }
 }
 
-/* Tema escuro automático — segue a preferência do sistema operacional do visitante */
+/* Tema escuro: segue o sistema por padrão; data-theme (definido pelo botão) passa a valer sobre isso */
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
     --bg:#0b1220;
     --paper:#121b2e;
     --ink:#eef2f8;
@@ -695,16 +716,51 @@ html{ scroll-padding-top:72px; }
     --accent:#6ea6f0;
     --accent-dark:#3f7dd9;
   }
+}
 
-  /* Elementos com fundo branco fixo precisam de uma regra própria no escuro */
-  .carousel__btn,
-  .project-card,
-  .social-card,
-  .topbar__link{
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0b1220;
+  --paper:#121b2e;
+  --ink:#eef2f8;
+  --ink-soft:#a9b6cc;
+  --ink-faint:#6b7a94;
+  --line:#22304a;
+
+  --java:#8fb2e3;
+  --java-bg:#1b2b47;
+  --python:#9dc0f2;
+  --python-bg:#182640;
+  --spring:#7ab2ee;
+  --spring-bg:#16233c;
+
+  --accent:#6ea6f0;
+  --accent-dark:#3f7dd9;
+}
+
+/* Fundos fixos em branco precisam de uma regra própria no tema escuro */
+:root[data-theme="dark"] .carousel__btn,
+:root[data-theme="dark"] .project-card,
+:root[data-theme="dark"] .social-card,
+:root[data-theme="dark"] .social__link,
+:root[data-theme="dark"] .topbar__link{
+  background:var(--bg);
+}
+
+:root[data-theme="dark"] .topbar{
+  background:rgba(11,18,32,.92);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .carousel__btn,
+  :root:not([data-theme="light"]) .project-card,
+  :root:not([data-theme="light"]) .social-card,
+  :root:not([data-theme="light"]) .social__link,
+  :root:not([data-theme="light"]) .topbar__link{
     background:var(--bg);
   }
 
-  .topbar{
+  :root:not([data-theme="light"]) .topbar{
     background:rgba(11,18,32,.92);
   }
 }
