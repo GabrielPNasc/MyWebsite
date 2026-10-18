@@ -292,6 +292,54 @@ img{ max-width:100%; display:block; }
 }
 
 .lang-toggle__icon{ width:16px; height:16px; flex-shrink:0; }
+.lang-toggle__caret{ width:12px; height:12px; flex-shrink:0; opacity:.6; transition:transform .15s; }
+.lang-toggle[aria-expanded="true"] .lang-toggle__caret{ transform:rotate(180deg); }
+
+/* Seletor de idioma: o botao abre um menu com as traducoes disponiveis. */
+.lang-picker{ position:relative; }
+
+.lang-menu{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  z-index:10;
+  min-width:176px;
+  padding:6px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:var(--bg);
+  box-shadow:0 16px 36px rgba(15,27,46,.18);
+}
+
+.lang-menu__btn{
+  display:flex;
+  align-items:center;
+  width:100%;
+  padding:8px 10px;
+  border:0;
+  border-radius:var(--radius-sm);
+  background:transparent;
+  color:var(--ink-soft);
+  font-family:var(--font-body);
+  font-size:14px;
+  text-align:left;
+  cursor:pointer;
+  transition:background .15s, color .15s;
+}
+
+.lang-menu__btn:hover{ background:var(--paper); color:var(--ink); }
+
+.lang-menu__btn[aria-current="true"]{ color:var(--ink); font-weight:600; }
+
+.lang-menu__btn[aria-current="true"]::after{
+  content:"✓";
+  margin-left:auto;
+  color:var(--accent);
+}
+
+/* No tema escuro o menu precisa de um fundo mais claro que a pagina para se destacar */
+:root[data-theme="dark"] .lang-menu{ background:var(--paper); }
+:root[data-theme="dark"] .lang-menu__btn:hover{ background:var(--line); }
 
 /* Peso visual intermediário: mesmo contorno discreto dos links, sem preenchimento — não deve competir com os links de rede social */
 .theme-toggle{
@@ -798,4 +846,7 @@ img{ max-width:100%; display:block; }
   :root:not([data-theme="light"]) .topbar{
     background:rgba(11,18,32,.92);
   }
+
+  :root:not([data-theme="light"]) .lang-menu{ background:var(--paper); }
+  :root:not([data-theme="light"]) .lang-menu__btn:hover{ background:var(--line); }
 }
