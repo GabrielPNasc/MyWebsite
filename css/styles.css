@@ -335,6 +335,10 @@ img{ max-width:100%; display:block; }
 
 .social-card:hover{ border-color:var(--accent); background:var(--paper); transform:translateY(-2px); }
 
+/* O e-mail é o contato principal: ocupa a linha inteira acima das redes.
+   A classe vai no <li>, que é quem participa da grade (.social-cards) */
+.social-card--wide{ grid-column:1 / -1; }
+
 .social-card__icon{ width:22px; height:22px; flex-shrink:0; color:var(--accent); }
 
 .social-card__text{ display:flex; flex-direction:column; min-width:0; }
