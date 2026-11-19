@@ -20,6 +20,7 @@ const HTML_TEXT = {
     'education.title': 'Formação',
     'education.course': 'Ciência da Computação',
     'projects.title': 'Projetos',
+    'projects.shots': 'Capturas de tela',
     'projects.stack': 'Tecnologias usadas',
     'projects.qrcode.title': 'Gerador de QR Code',
     'projects.qrcode.text': 'API REST que recebe um link, processa e devolve o QR Code em PNG na hora. O aprendizado central foi integrar Spring Boot com JavaScript puro e entender a fundo o envio e a renderização de arquivos de imagem via HTTP.',
@@ -52,6 +53,7 @@ const HTML_TEXT = {
     'education.title': 'Formación',
     'education.course': 'Ciencias de la Computación',
     'projects.title': 'Proyectos',
+    'projects.shots': 'Capturas de pantalla',
     'projects.stack': 'Tecnologías usadas',
     'projects.qrcode.title': 'Generador de código QR',
     'projects.qrcode.text': 'API REST que recibe un enlace, lo procesa y devuelve el código QR en PNG al instante. El aprendizaje central fue integrar Spring Boot con JavaScript puro y entender a fondo el envío y la representación de archivos de imagen por HTTP.',
@@ -84,6 +86,7 @@ const HTML_TEXT = {
     'education.title': '学歴',
     'education.course': 'コンピュータサイエンス',
     'projects.title': 'プロジェクト',
+    'projects.shots': 'スクリーンショット',
     'projects.stack': '使用技術',
     'projects.qrcode.title': 'QR コードジェネレーター',
     'projects.qrcode.text': 'リンクを受け取り、処理して QR コードを PNG で即座に返す REST API です。Spring Boot と素の JavaScript を連携させ、HTTP 経由で画像ファイルを送信・描画する仕組みを深く理解することが中心的な学びでした。',
@@ -116,6 +119,7 @@ const HTML_TEXT = {
     'education.title': 'Formation',
     'education.course': 'Informatique',
     'projects.title': 'Projets',
+    'projects.shots': 'Captures d’écran',
     'projects.stack': 'Technologies utilisées',
     'projects.qrcode.title': 'Générateur de QR Code',
     'projects.qrcode.text': 'Une API REST qui reçoit un lien, le traite et renvoie le QR Code en PNG immédiatement. L’apprentissage clé a été d’intégrer Spring Boot avec du JavaScript pur et de comprendre en profondeur l’envoi et l’affichage de fichiers image via HTTP.',
@@ -136,6 +140,13 @@ const HTML_TEXT = {
     'footer.text': 'Je cherche à m’améliorer chaque jour, le temps passe et je ne peux pas rester à la traîne.',
   },
 };
+
+// Textos extras de paginas internas (ex.: now.html), vindos de js/now-text.js.
+if (window.PAGE_TEXT) {
+  Object.keys(window.PAGE_TEXT).forEach((lang) => {
+    HTML_TEXT[lang] = Object.assign(HTML_TEXT[lang] || {}, window.PAGE_TEXT[lang]);
+  });
+}
 
 // Idiomas com traducao (o ingles e o padrao, entao nao entra nesta lista).
 const I18N_LANGUAGES = Object.freeze(Object.keys(HTML_TEXT));
@@ -425,6 +436,55 @@ const LANG_TAGS = Object.freeze({ en: 'en', pt: 'pt-BR', es: 'es', ja: 'ja', fr:
   hero.addEventListener('pointerleave', () => {
     wrap.style.setProperty('--ry', '0deg');
     wrap.style.setProperty('--rx', '0deg');
+  });
+})();
+
+// Foto do Sobre: dispara a animacao de revelar quando entra na tela.
+(function AboutReveal() {
+  'use strict';
+  const wrap = document.getElementById('about-reveal');
+  if (!wrap) return;
+
+  if (!('IntersectionObserver' in window)) {
+    wrap.classList.add('is-in');
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      wrap.classList.add('is-in');
+      observer.disconnect();
+    });
+  }, { threshold: 0.35 });
+
+  observer.observe(wrap);
+})();
+
+// Galeria de capturas dos projetos: se a imagem nao existir (ainda nao foi
+// salva em assets/projects/), esconde o card em vez de mostrar imagem quebrada.
+(function ProjectShots() {
+  'use strict';
+  const shots = document.querySelectorAll('#project-shots .shot');
+  const title = document.querySelector('[data-i18n="projects.shots"]');
+  if (!shots.length) return;
+
+  function refresh() {
+    const anyVisible = Array.from(shots).some((s) => !s.hidden);
+    if (title) title.hidden = !anyVisible;
+  }
+
+  shots.forEach((shot) => {
+    const img = shot.querySelector('img');
+    if (!img) return;
+
+    function hide() {
+      shot.hidden = true;
+      refresh();
+    }
+
+    img.addEventListener('error', hide);
+    if (img.complete && img.naturalWidth === 0) hide();
   });
 })();
 
