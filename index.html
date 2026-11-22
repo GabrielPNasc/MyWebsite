@@ -16,13 +16,13 @@
                  base-uri 'self';
                  frame-ancestors 'none';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#edeff4" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f3f3f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=14">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=27">
   <link rel="icon" type="image/png" href="assets/images-removebg-preview.png">
 
   <!-- Aplica o tema salvo antes do primeiro paint, evitando flash de tema errado -->
@@ -47,7 +47,10 @@
 </svg>
 
 <header class="top">
-  <a class="top__brand" href="#top">gabriel$</a><a class="top__link" href="terminal.html">/terminal</a>
+  <a class="top__brand" href="#top">gabriel$</a>
+  <a class="top__link" href="terminal.html">/terminal</a>
+  <a class="top__link" href="log.html">/log</a>
+
   <div class="top__actions">
     <div class="lang-picker" id="lang-picker">
       <button type="button" class="lang-toggle" id="lang-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="lang-menu" aria-label="Choose language" title="Choose language" data-i18n-aria-label="action.language" data-i18n-title="action.language">
@@ -73,9 +76,9 @@
 <main class="wrap">
 
   <section class="hero">
-    <div>
+    <div class="hero__text">
       <p class="hero__hi" data-i18n="hero.hi">Hi! I'm</p>
-      <h1 class="hero__name"><span>Gabriel</span><span>Nascimento</span></h1>
+      <h1 class="hero__name"><span>Gabriel</span><span>Nascimento</span><img class="hero__smiley" src="assets/emoji.png" alt="" aria-hidden="true" width="176" height="188" decoding="async"></h1>
       <div class="term">
         <p class="term__title">~/gabriel</p>
         <div class="term__step"><p class="term__line"><span class="term__prompt">$</span><span class="term__cmd" data-cmd="cat role.txt">cat role.txt</span><span class="term__cursor"></span></p>
@@ -84,6 +87,13 @@
           <p class="term__out" data-i18n="sidebar.location">Recife, Pernambuco, Brazil</p></div>
         <div class="term__step"><p class="term__line"><span class="term__prompt">$</span><span class="term__cmd" data-cmd="ls stack/">ls stack/</span><span class="term__cursor"></span></p>
           <p class="term__out term__out--stagger"><span>Java</span><span>Spring Boot</span><span>Python</span></p></div>
+      </div>
+
+      <div class="hero__links">
+        <a class="social" href="https://github.com/GabrielPNasc" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg>GitHub</a>
+        <a class="social" href="https://www.linkedin.com/in/gabrielpnasc/" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-in"/></svg>LinkedIn</a>
+        <a class="social" href="https://www.youtube.com/channel/UCG4u3sJ6aSnnqwG2Y7sokSA" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-yt"/></svg>YouTube</a>
+        <a class="social" href="https://www.instagram.com/pires.dev/" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>Instagram</a>
       </div>
     </div>
     <div class="hero__photo-wrap" id="photo-tilt">
@@ -94,7 +104,10 @@
   </section>
 
   <section class="sec" id="sobre" aria-labelledby="about-heading">
-    <h2 class="sec__title" id="about-heading" data-i18n="about.title">About</h2>
+    <div class="sec__head">
+      <span class="sec__num" aria-hidden="true">01</span>
+      <h2 class="sec__title" id="about-heading" data-i18n="about.title">About</h2>
+    </div>
     <div class="about">
       <p data-i18n="about.text">I'm a Computer Science student focused on building complete applications with layered architecture and solid coding practices. My main achievement so far is having built working applications from scratch, constantly improving in logic, object-oriented programming and version control with Git. I'm driven by challenges, continuous learning and the pursuit of clean, organized and scalable solutions.</p>
       <div class="about__photo-wrap" id="about-reveal">
@@ -106,91 +119,114 @@
   </section>
 
   <section class="sec" id="formacao" aria-labelledby="education-heading">
-    <h2 class="sec__title" id="education-heading" data-i18n="education.title">Education</h2>
-    <div class="cards">
-      <article class="card">
-        <span class="card__meta">2026 — 2030</span>
-        <h3 class="card__title">CESAR School</h3>
-        <p class="card__sub" data-i18n="education.course">Computer Science</p>
-      </article>
+    <div class="sec__head">
+      <span class="sec__num" aria-hidden="true">02</span>
+      <h2 class="sec__title" id="education-heading" data-i18n="education.title">Education</h2>
     </div>
+    <ul class="rows">
+      <li class="row">
+        <div class="row__main">
+          <h3 class="row__title">CESAR School</h3>
+          <p class="row__text" data-i18n="education.course">Computer Science</p>
+        </div>
+        <span class="row__meta">2026 — 2030</span>
+      </li>
+    </ul>
   </section>
 
   <section class="sec" id="projetos" aria-labelledby="projects-heading">
-    <h2 class="sec__title" id="projects-heading" data-i18n="projects.title">Projects</h2>
-    <div class="cards">
-      <article class="card">
-        <span class="tag tag--java">Java</span>
-        <h3 class="card__title" data-i18n="projects.qrcode.title">QR Code Generator</h3>
-        <p class="card__text" data-i18n="projects.qrcode.text">A REST API that receives a link, processes it and returns the QR Code as a PNG right away. The core lesson was integrating Spring Boot with plain JavaScript and understanding in depth how image files are sent and rendered over HTTP.</p>
-        <div class="chips" role="group" aria-label="Technologies used" data-i18n-aria-label="projects.stack"><span>Spring Boot</span><span>ZXing</span><span>Java</span></div>
-        <a class="repo" href="https://github.com/GabrielPNasc/Gerador-de-QRCode" target="_blank" rel="noopener noreferrer" aria-label="View the QR Code Generator repository on GitHub" data-i18n-aria-label="projects.qrcode.link"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg><span>repo</span></a>
-      </article>
-      <article class="card">
-        <span class="tag tag--python">Python</span>
-        <h3 class="card__title" data-i18n="projects.motion.title">Motion Detection System</h3>
-        <p class="card__text" data-i18n="projects.motion.text">Watches the chosen window by the number of pixels changed between frames. When it detects movement, it sounds an alert and automatically sends a WhatsApp message with an image and the time it happened.</p>
-        <div class="chips" role="group" aria-label="Technologies used" data-i18n-aria-label="projects.stack"><span>Python</span><span>OpenCV</span><span>Selenium</span></div>
-        <a class="repo" href="https://github.com/GabrielPNasc/Sistema-de-Detectacao-de-movimento" target="_blank" rel="noopener noreferrer" aria-label="View the Motion Detection System repository on GitHub" data-i18n-aria-label="projects.motion.link"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg><span>repo</span></a>
-      </article>
-      <article class="card">
-        <span class="tag tag--java">Java</span>
-        <h3 class="card__title" data-i18n="projects.login.title">Login System API</h3>
-        <p class="card__text" data-i18n="projects.login.text">An authentication system for user sign-up and login through an API: it receives and validates the credentials and handles communication with the database.</p>
-        <div class="chips" role="group" aria-label="Technologies used" data-i18n-aria-label="projects.stack"><span>API REST</span><span>Spring Boot</span><span>Java</span></div>
-        <a class="repo" href="https://github.com/GabrielPNasc/API_system_login" target="_blank" rel="noopener noreferrer" aria-label="View the Login System API repository on GitHub" data-i18n-aria-label="projects.login.link"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg><span>repo</span></a>
-      </article>
+    <div class="sec__head">
+      <span class="sec__num" aria-hidden="true">03</span>
+      <h2 class="sec__title" id="projects-heading" data-i18n="projects.title">Projects</h2>
     </div>
 
-    <h3 class="sub__title" data-i18n="projects.shots">Screenshots</h3>
-    <div class="shots" id="project-shots">
-      <figure class="shot">
-        <img src="assets/projects/qrcode.png" alt="" loading="lazy">
-        <figcaption data-i18n="projects.qrcode.title">QR Code Generator</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/projects/motion.png" alt="" loading="lazy">
-        <figcaption data-i18n="projects.motion.title">Motion Detection System</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="assets/projects/login.png" alt="" loading="lazy">
-        <figcaption data-i18n="projects.login.title">Login System API</figcaption>
-      </figure>
+    <div class="proj">
+      <a class="proj__feature" href="https://github.com/GabrielPNasc/Gerador-de-QRCode" target="_blank" rel="noopener noreferrer" aria-label="View the QR Code Generator repository on GitHub" data-i18n-aria-label="projects.qrcode.link">
+        <span class="proj__go" aria-hidden="true">↗</span>
+        <span class="proj__body">
+          <span class="proj__head">
+            <span class="proj__kind">Java</span>
+            <span class="proj__name" data-i18n="projects.qrcode.title">QR Code Generator</span>
+          </span>
+          <span class="proj__foot">
+            <span class="proj__desc" data-i18n="projects.qrcode.text">A REST API that receives a link, processes it and returns the QR Code as a PNG right away. The core lesson was integrating Spring Boot with plain JavaScript and understanding in depth how image files are sent and rendered over HTTP.</span>
+            <span class="proj__stack">Java · Spring Boot · ZXing</span>
+          </span>
+        </span>
+      </a>
+
+      <ul class="proj__list">
+        <li>
+          <a class="proj__card" href="https://github.com/GabrielPNasc/Sistema-de-Detectacao-de-movimento" target="_blank" rel="noopener noreferrer" aria-label="View the Motion Detection System repository on GitHub" data-i18n-aria-label="projects.motion.link">
+            <span class="proj__body">
+              <span class="proj__head">
+                <span class="proj__row">
+                  <span class="proj__name" data-i18n="projects.motion.title">Motion Detection System</span>
+                  <span class="proj__kind">Python</span>
+                </span>
+              </span>
+              <span class="proj__foot">
+                <span class="proj__desc" data-i18n="projects.motion.text">Watches the chosen window by the number of pixels changed between frames. When it detects movement, it sounds an alert and automatically sends a WhatsApp message with an image and the time it happened.</span>
+                <span class="proj__stack">Python · OpenCV · Selenium</span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="proj__card" href="https://github.com/GabrielPNasc/API_system_login" target="_blank" rel="noopener noreferrer" aria-label="View the Login System API repository on GitHub" data-i18n-aria-label="projects.login.link">
+            <span class="proj__body">
+              <span class="proj__head">
+                <span class="proj__row">
+                  <span class="proj__name" data-i18n="projects.login.title">Login System API</span>
+                  <span class="proj__kind">Java</span>
+                </span>
+              </span>
+              <span class="proj__foot">
+                <span class="proj__desc" data-i18n="projects.login.text">An authentication system for user sign-up and login through an API: it receives and validates the credentials and handles communication with the database.</span>
+                <span class="proj__stack">API REST · Spring Boot · Java</span>
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
   <section class="sec" id="certificados" aria-labelledby="certs-heading">
-    <h2 class="sec__title" id="certs-heading" data-i18n="certs.title">Certificates</h2>
-    <div class="cards">
-      <article class="card">
-        <div class="card__head">
-          <span class="issuer issuer--udemy" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-udemy"/></svg></span>
-          <span class="card__meta" data-i18n="certs.java.date">Mar 2026</span>
-        </div>
-        <h3 class="card__title" data-i18n="certs.java.title">Complete Java — Object-Oriented Programming + Projects</h3>
-        <p class="card__sub">Udemy</p>
-      </article>
-      <article class="card">
-        <div class="card__head">
-          <span class="issuer issuer--santander" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-santander"/></svg></span>
-          <span class="card__meta" data-i18n="certs.python.date">Sep 2026</span>
-        </div>
-        <h3 class="card__title">Python</h3>
-        <p class="card__sub">Santander Open Academy</p>
-      </article>
-      <article class="card">
-        <div class="card__head">
-          <span class="issuer issuer--senac" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-senac"/></svg></span>
-          <span class="card__meta" data-i18n="certs.scrum.date">Aug 2026</span>
-        </div>
-        <h3 class="card__title" data-i18n="certs.scrum.title">Agile project management with Scrum and Kanban</h3>
-        <p class="card__sub">Senac Brasil</p>
-      </article>
+    <div class="sec__head">
+      <span class="sec__num" aria-hidden="true">04</span>
+      <h2 class="sec__title" id="certs-heading" data-i18n="certs.title">Certificates</h2>
     </div>
+    <ul class="rows">
+      <li class="row">
+        <div class="row__main">
+          <h3 class="row__title" data-i18n="certs.java.title">Complete Java — Object-Oriented Programming + Projects</h3>
+          <p class="row__sub"><span class="issuer issuer--udemy" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-udemy"/></svg></span>Udemy</p>
+        </div>
+        <span class="row__meta" data-i18n="certs.java.date">Mar 2026</span>
+      </li>
+      <li class="row">
+        <div class="row__main">
+          <h3 class="row__title">Python</h3>
+          <p class="row__sub"><span class="issuer issuer--santander" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-santander"/></svg></span>Santander Open Academy</p>
+        </div>
+        <span class="row__meta" data-i18n="certs.python.date">Sep 2026</span>
+      </li>
+      <li class="row">
+        <div class="row__main">
+          <h3 class="row__title" data-i18n="certs.scrum.title">Agile project management with Scrum and Kanban</h3>
+          <p class="row__sub"><span class="issuer issuer--senac" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="#i-senac"/></svg></span>Senac Brasil</p>
+        </div>
+        <span class="row__meta" data-i18n="certs.scrum.date">Aug 2026</span>
+      </li>
+    </ul>
   </section>
 
   <section class="contact" id="contato" aria-labelledby="contact-heading">
-    <h2 class="sec__title" id="contact-heading" data-i18n="footer.title">Let's talk</h2>
+    <div class="sec__head">
+      <span class="sec__num" aria-hidden="true">05</span>
+      <h2 class="sec__title" id="contact-heading" data-i18n="footer.title">Let's talk</h2>
+    </div>
     <p class="contact__text" data-i18n="footer.text">I'm always looking to improve, time passes and I can't fall behind.</p>
     <a class="contact__mail" href="mailto:dev.gabrielnasc@gmail.com">dev.gabrielnasc@gmail.com</a>
     <div class="socials">
@@ -201,8 +237,14 @@
     </div>
   </section>
 
+  <footer class="foot">
+    <p class="foot__note" data-i18n="footer.note">© 2026 — built by hand, no framework.</p>
+    <a class="foot__top" href="#top" aria-label="Back to top">↑</a>
+  </footer>
+
 </main>
 
+<script src="js/site-text.js" defer></script>
 <script src="js/main.js?v=14" defer></script>
 </body>
 </html>
