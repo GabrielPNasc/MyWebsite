@@ -588,7 +588,6 @@ img{max-width:100%;display:block}
   grid-template-columns:minmax(0,2fr) minmax(0,1fr);
   gap:16px;
   align-items:stretch;
-  min-height:clamp(360px,40vw,460px);
 }
 
 .proj__feature,
@@ -621,14 +620,12 @@ img{max-width:100%;display:block}
   display:flex;
   flex:1;
   flex-direction:column;
-  justify-content:space-between;
-  gap:clamp(18px,2.4vw,30px);
+  gap:10px;
   min-width:0;
   padding:18px 20px 20px;
 }
 
-.proj__head,
-.proj__foot{
+.proj__head{
   display:flex;
   flex-direction:column;
   gap:8px;
@@ -661,6 +658,7 @@ img{max-width:100%;display:block}
 
 /* a stack fecha o cartão, no lugar do print que ainda não existe */
 .proj__stack{
+  margin-top:auto;
   padding-top:12px;
   border-top:1px solid var(--line);
   color:var(--faint);
@@ -858,6 +856,7 @@ img{max-width:100%;display:block}
 .foot__note{margin:0}
 
 .foot__top{
+  margin-left:auto;
   color:var(--faint);
   text-decoration:none;
   transition:color .15s;

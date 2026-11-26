@@ -4,43 +4,35 @@
 // O inglês não entra aqui: ele é o texto que já está no HTML.
 window.PAGE_TEXT = {
   pt: {
-    'footer.note': '© 2026 — feito à mão, sem framework.',
-
     'log.title': 'Log',
     'log.intro': '// o que eu fiz, mês a mês.',
     'log.now': 'agora',
-    'log.2026.11.1': 'Refiz o portfólio do zero: layout escuro, cinco idiomas, uma página de terminal.',
-    'log.2026.11.2': 'Aprofundando em Java e Spring Boot.',
-    'log.2026.11.3': 'Comecei este log.',
+    'log.2026.11.1': 'Comecei este log.',
+    'log.2026.11.2': 'Início do projeto Registro de gastos, pra ter mais confiança em Java.',
+    'log.2026.11.3': 'Novo visual do portfólio: layout escuro, cinco idiomas e uma página de terminal.',
   },
   es: {
-    'footer.note': '© 2026 — hecho a mano, sin framework.',
-
     'log.title': 'Log',
     'log.intro': '// lo que hice, mes a mes.',
     'log.now': 'ahora',
-    'log.2026.11.1': 'Rehíce el portafolio desde cero: diseño oscuro, cinco idiomas, una página de terminal.',
-    'log.2026.11.2': 'Profundizando en Java y Spring Boot.',
-    'log.2026.11.3': 'Empecé este registro.',
+    'log.2026.11.1': 'Empecé este registro.',
+    'log.2026.11.2': 'Inicio del proyecto Registro de gastos, para tener más confianza en Java.',
+    'log.2026.11.3': 'Nuevo aspecto del portafolio: diseño oscuro, cinco idiomas y una página de terminal.',
   },
   fr: {
-    'footer.note': '© 2026 — fait à la main, sans framework.',
-
     'log.title': 'Log',
     'log.intro': '// ce que j’ai fait, mois par mois.',
     'log.now': 'maintenant',
-    'log.2026.11.1': 'Portfolio refait de zéro : mise en page sombre, cinq langues, une page terminal.',
-    'log.2026.11.2': 'Approfondissement de Java et Spring Boot.',
-    'log.2026.11.3': 'J’ai commencé ce journal.',
+    'log.2026.11.1': 'J’ai commencé ce journal.',
+    'log.2026.11.2': 'Début du projet Registre de dépenses, pour gagner en confiance en Java.',
+    'log.2026.11.3': 'Nouveau look du portfolio : mise en page sombre, cinq langues et une page terminal.',
   },
   ja: {
-    'footer.note': '© 2026 — 手で書いた、フレームワークなし。',
-
     'log.title': 'ログ',
     'log.intro': '// 月ごとに、やったこと。',
     'log.now': '現在',
-    'log.2026.11.1': 'ポートフォリオを一から作り直した：ダークなレイアウト、5言語、ターミナルページ。',
-    'log.2026.11.2': 'Java と Spring Boot を深く学んでいる。',
-    'log.2026.11.3': 'このログを始めた。',
+    'log.2026.11.1': 'このログを始めた。',
+    'log.2026.11.2': '支出記録プロジェクトを開始（Java に慣れるため）。',
+    'log.2026.11.3': 'ポートフォリオを新しい見た目に：ダークなレイアウト、5言語、ターミナルページ。',
   },
 };
